@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { IWebService } from './IWebService'
+import { IRequestService } from './IRequestService'
 
 /**
- * Web Service Client Axios Implementation
+ * Request Service Axios Implementation
  */
-const AxiosWebService = (): IWebService<AxiosRequestConfig> => ({
+const AxiosWebService = (): IRequestService<AxiosRequestConfig> => ({
   get: async (request) => axios.get(request.url, request.config),
 })
 

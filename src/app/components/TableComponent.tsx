@@ -4,17 +4,38 @@ import { IIIdentifiable } from "../models/Models";
 import ButtonComponent from "./ButtonComponent";
 
 interface IProps {
+  /**
+   * Columns of the Table
+   */
   columns: GridColDef[];
-  title?: string;
+  /**
+   * Rows with Data
+   */
   rows: IIIdentifiable[] | undefined;
+  /**
+   * Rows per page
+   */
   pageSize: number;
+  /**
+   * Table Title
+   */
+  title?: string;
+  /**
+   * Sorting function
+   */
   sorting?: (a: any, b: any) => number
 }
 
 interface IActions {
+  /**
+   * Row Button Click Event
+   */
   onRowButtonClick?: (index: number) => void
 }
 
+/**
+ * Table Component
+ */
 const TableComponent = (props: IProps & IActions): JSX.Element => {
   const columnsWithButtons = (): GridColDef[] => {
     return props.columns.map((col) => {
@@ -28,7 +49,8 @@ const TableComponent = (props: IProps & IActions): JSX.Element => {
   }
 
   return (<div style={{ display: 'flex', width: '100%'}}>
-      <DataGrid
+    {props.title && <h1>{props.title}</h1>}
+    <DataGrid
       rows={props.sorting ? props.rows?.sort(props.sorting) ?? [] : props.rows ?? []}
       columns={columnsWithButtons()}
       autoHeight={true}

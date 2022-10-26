@@ -4,10 +4,17 @@ import { getMakeLogoUri } from "../Utils";
 import './../styles/_manufacturerCard.scss'
 
 interface IProps {
+  /**
+   * Manufacturer Object
+   */
   company: IManufacturer
 }
 
+/**
+ * Component to Display Manufacturer Name, Country and Logo
+ */
 const ManufacturerCard = (props: IProps): JSX.Element => {
+  /** Get Logo */
   const logoUri = getMakeLogoUri(props.company.commonName)
   return <div className={'manufacturer-card'}>
     <div className={'header'}>

@@ -1,5 +1,7 @@
 import CarLogos from '@avto-dev/vehicle-logotypes/src/vehicle-logotypes.json'
 import { IExternalCompany, IExternalModel, IManufacturer, IModel, INamed } from "./models/Models";
+import { IRequestService } from "./service/IRequestService";
+import AxiosWebService from "./service/AxiosWebService";
 
 /**
  * Get Make Logo if possible
@@ -32,11 +34,19 @@ export const mapExternalModel = (model: IExternalModel): IModel => {
   }
 }
 
+/**
+ * Method to sort objects, implementing INamed
+ */
 export const sortNamed = (a: INamed, b: INamed): number => {
   if (a.name === b.name) {
     return 0
   }
   return a.name < b.name ? -1 : 1
 }
+
+/**
+ * Get Current Implementation of external API Request Service
+ */
+export const getRequestService = (): IRequestService<any> => AxiosWebService()
 
 

@@ -9,16 +9,31 @@ import './../styles/_manufacturerInfo.scss'
 import ButtonComponent from "./ButtonComponent";
 
 interface IProps {
+  /**
+   * Manufacturer Id
+   */
   companyId: number
 }
 
 interface IActions {
-
+  /**
+   * On click 'Back' Button Event
+   */
+  onBackButtonClick: () => void
 }
 
+/**
+ * Component to display Manufacturer Info with Models Table
+ */
 const ManufacturerInfo = (props: IProps & IActions): JSX.Element => {
 
+  /**
+   * Get Manufacturer Data
+   */
   const manufacturerQueryData = useQuery(['company_cache', props.companyId], () => fetchManufacturer(props.companyId), {})
+  /**
+   * Get Manufacturer Makes
+   */
   const makesQueryData = useQuery(['makes_cache', props.companyId], () => fetchAllMakesListByManufacturerId(props.companyId), {})
 
   return <div className={'manufacturer-info'}>
@@ -27,7 +42,7 @@ const ManufacturerInfo = (props: IProps & IActions): JSX.Element => {
     </div>}
     {manufacturerQueryData.data?.Results[0] && <div className={'panel'}>
       <ManufacturerCard company={mapExternalManufacturer(manufacturerQueryData.data?.Results[0])}/>
-      <ButtonComponent caption={'Back'} onClick={() => {}}/>
+      <ButtonComponent caption={'Back'} onClick={props.onBackButtonClick}/>
     </div>}
     {makesQueryData?.isLoading && <div style={{display: 'flex', alignSelf: 'center'}}>
       <CircularProgress/>

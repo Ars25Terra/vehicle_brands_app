@@ -1,5 +1,5 @@
 import { IExternalCompany, IExternalMake, IExternalModel, IListResponse } from "../models/Models";
-import AxiosWebService from "./AxiosWebService";
+import { getRequestService } from "../Utils";
 
 /**
  * Context path to API
@@ -38,7 +38,7 @@ export const fetchAllModelsByMakeId = async (id: number) => {
  * Method to perform Get Requests
  */
 const doRequest = async <T>(requestParams: {url: string}, id?: number) => {
-  const { data }: IListResponse<T> = await AxiosWebService().get(
+  const { data }: IListResponse<T> = await getRequestService().get(
     requestParams
   )
   return data

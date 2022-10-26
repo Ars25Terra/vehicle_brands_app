@@ -51,7 +51,7 @@ function App() {
         sorting={sortNamed}
         onRowButtonClick={handleTableRowButtonClick}
       />}
-      {currentCompanyId && <ManufacturerInfo companyId={currentCompanyId}/>}
+      {currentCompanyId && <ManufacturerInfo companyId={currentCompanyId} onBackButtonClick={() => {}}/>}
     </div>
   )
 }

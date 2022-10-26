@@ -8,9 +8,15 @@ import { mapExternalModel, sortNamed } from "../Utils";
 import CircularProgress from "@mui/material/CircularProgress";
 
 interface IProps {
+  /**
+   * List of Make ids to request models
+   */
   makeIdList: number[]
 }
 
+/**
+ * Car Models Table Columns
+ */
 const columns: GridColDef[] = [
   {
     field: "id",
@@ -27,14 +33,20 @@ const columns: GridColDef[] = [
     headerName: "Make Name",
     width: 400
   }
-];
+]
 
+/**
+ * Car Models Table Component
+ */
 const ModelsViewTable = (props: IProps): JSX.Element => {
 
   /**
    * Preparing promises for all makes id to be sent into useQuery
    */
   const promiseAll = props.makeIdList.map((id) => fetchAllModelsByMakeId(id))
+  /**
+   * Get models for Makes
+   */
   const results = useQuery(['makes_cache', props.makeIdList], () => Promise.all(promiseAll))
 
   /**
@@ -48,6 +60,9 @@ const ModelsViewTable = (props: IProps): JSX.Element => {
     return models
   }
 
+  /**
+   * Show spinner while loading
+   */
   if (results.isLoading) {
     return <div style={{display: 'flex', alignSelf: 'center'}}>
       <CircularProgress/>

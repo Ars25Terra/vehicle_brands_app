@@ -5,6 +5,9 @@ export interface IIIdentifiable {
   id: number
 }
 
+/**
+ * Implementations must have 'name' field
+ */
 export interface INamed extends IIIdentifiable {
   name: string
 }
@@ -27,6 +30,9 @@ export interface IExternalCompany {
   Mfr_Name: string
 }
 
+/**
+ * Generic List Response
+ */
 export interface IListResponse<T> {
   data: {
     Results: T
@@ -42,7 +48,9 @@ export interface IExternalMake {
   Mfr_Name:	string
 }
 
-
+/**
+ * Model for External Car Model, that that is received from API
+ */
 export interface IExternalModel {
   Make_ID: number
   Make_Name: string
@@ -50,6 +58,9 @@ export interface IExternalModel {
   Model_Name: string
 }
 
+/**
+ * Car Model
+ */
 export interface IModel extends INamed {
   makeName: string
 }
