@@ -1,0 +1,13 @@
+@use 'colors' as *;
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Montserrart, sans-serif;
+  background-color: $black-color;
+  color: $very-light-gray-color;
+}
+
+h1 {
+  color: white;
+}

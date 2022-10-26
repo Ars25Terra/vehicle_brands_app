@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { useQuery } from 'react-query'
+import TableComponent from "./app/components/TableComponent";
+import { IExternalCompany, IManufacturer } from "./app/models/Models";
+import { GridColDef } from "@mui/x-data-grid";
+import ManufacturerInfo from "./app/components/ManufacturerInfo";
+import { mapExternalManufacturer, sortNamed } from "./app/Utils";
+import { fetchAllManufacturerList } from "./app/service/ReuqestUtils";
+import CircularProgress from '@mui/material/CircularProgress';
+import './app/styles/_app.scss'
+
+const columns: GridColDef[] = [
+  {headerName: 'Id', width: 100, field: 'id'},
+  {headerName: 'Name', width: 400, field: 'commonName'},
+  {headerName: 'Country', width: 200, field: 'country'},
+  {headerName: '', width: 100, field: 'button', disableColumnMenu: true, sortable: false, align: 'right'},
+]
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const { data, isError, isLoading } = useQuery('data_cache', fetchAllManufacturerList, {})
+  const [currentCompanyId, setCurrentCompanyId] = useState<number | undefined>(undefined)
+
+  if (isLoading) {
+    return <div>
+      <CircularProgress/>
     </div>
-  );
+  }
+
+  if (isError) {
+    return (
+      <div>
+        An Error occurred.
+      </div>
+    )
+  }
+
+  const getManufacturers = (): IManufacturer[] => {
+    return data
+      ? data.Results?.map((item: IExternalCompany) => {
+      return mapExternalManufacturer(item)
+    })
+      : []
+  }
+
+  const handleTableRowButtonClick = (id: number) => {
+    setCurrentCompanyId(id)
+  }
+
+  return (
+    <div className="app">
+      {!currentCompanyId && <TableComponent
+        rows={getManufacturers()}
+        columns={columns}
+        pageSize={10}
+        sorting={sortNamed}
+        onRowButtonClick={handleTableRowButtonClick}
+      />}
+      {currentCompanyId && <ManufacturerInfo companyId={currentCompanyId}/>}
+    </div>
+  )
 }
 
-export default App;
+export default App
