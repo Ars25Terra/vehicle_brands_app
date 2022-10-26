@@ -13,19 +13,13 @@ const columns: GridColDef[] = [
   {headerName: 'Id', width: 100, field: 'id'},
   {headerName: 'Name', width: 400, field: 'commonName'},
   {headerName: 'Country', width: 200, field: 'country'},
-  {headerName: '', width: 100, field: 'button', disableColumnMenu: true, sortable: false, align: 'right'},
+  {headerName: '', width: 300, field: 'button', disableColumnMenu: true, sortable: false, align: 'right'},
 ]
 
 function App() {
 
   const { data, isError, isLoading } = useQuery('data_cache', fetchAllManufacturerList, {})
   const [currentCompanyId, setCurrentCompanyId] = useState<number | undefined>(undefined)
-
-  if (isLoading) {
-    return <div>
-      <CircularProgress/>
-    </div>
-  }
 
   if (isError) {
     return (
@@ -49,7 +43,8 @@ function App() {
 
   return (
     <div className="app">
-      {!currentCompanyId && <TableComponent
+      {isLoading && <CircularProgress/>}
+      {!currentCompanyId &&!isLoading && <TableComponent
         rows={getManufacturers()}
         columns={columns}
         pageSize={10}

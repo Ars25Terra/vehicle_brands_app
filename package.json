@@ -2,6 +2,7 @@
   "name": "vehicalmakers",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@avto-dev/vehicle-logotypes": "^2.6.0",
     "@mui/x-data-grid": "^5.17.8",
@@ -33,6 +34,9 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "transformIgnorePatterns": ["node_modules\/(?!axios)"]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -44,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-jest": "^29.2.2"
   }
 }

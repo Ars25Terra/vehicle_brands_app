@@ -29,7 +29,7 @@ const columns: GridColDef[] = [
   }
 ];
 
-const ModelsView = (props: IProps): JSX.Element => {
+const ModelsViewTable = (props: IProps): JSX.Element => {
 
   /**
    * Preparing promises for all makes id to be sent into useQuery
@@ -49,7 +49,7 @@ const ModelsView = (props: IProps): JSX.Element => {
   }
 
   if (results.isLoading) {
-    return <div>
+    return <div style={{display: 'flex', alignSelf: 'center'}}>
       <CircularProgress/>
     </div>
   }
@@ -59,4 +59,4 @@ const ModelsView = (props: IProps): JSX.Element => {
   </div>
 }
 
-export default ModelsView
+export default ModelsViewTable

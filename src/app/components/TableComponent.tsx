@@ -1,6 +1,7 @@
 import React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { IIIdentifiable } from "../models/Models";
+import ButtonComponent from "./ButtonComponent";
 
 interface IProps {
   columns: GridColDef[];
@@ -19,8 +20,8 @@ const TableComponent = (props: IProps & IActions): JSX.Element => {
     return props.columns.map((col) => {
       if (col.field === 'button') {
         return {...col,
-          renderCell: (params) => <button onClick={() => props.onRowButtonClick && props.onRowButtonClick(params.row?.id)}>
-            Test</button> }
+          renderCell: (params) => <ButtonComponent caption={'Details'} onClick={() => props.onRowButtonClick && props.onRowButtonClick(params.row?.id)}/>
+        }
       }
       return col
     })

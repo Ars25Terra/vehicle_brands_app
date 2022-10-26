@@ -4,3 +4,8 @@ $gray-color1: #4e5860;
 $gray-color2: #687e84;
 $light-gray-color: #85a6a5;
 $very-light-gray-color: #a9cec2;
+
+:export {
+  primary: $light-gray-color;
+  secondary: $gray-color2;
+}
