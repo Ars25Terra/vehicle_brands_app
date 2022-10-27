@@ -37,6 +37,7 @@ const ManufacturerInfo = (props: IProps & IActions): JSX.Element => {
     () => fetchManufacturer(props.companyId),
     {}
   )
+
   /**
    * Get Manufacturer Makes
    */
@@ -48,7 +49,7 @@ const ManufacturerInfo = (props: IProps & IActions): JSX.Element => {
 
   return (
     <div className={'manufacturer-info'}>
-      {manufacturerQueryData?.isLoading && (
+      {(manufacturerQueryData?.isLoading || makesQueryData?.isLoading) && (
         <div style={{ display: 'flex', alignSelf: 'center' }}>
           <CircularProgress />
         </div>
@@ -63,11 +64,7 @@ const ManufacturerInfo = (props: IProps & IActions): JSX.Element => {
           <ButtonComponent caption={'Back'} onClick={props.onBackButtonClick} />
         </div>
       )}
-      {makesQueryData?.isLoading && (
-        <div style={{ display: 'flex', alignSelf: 'center' }}>
-          <CircularProgress />
-        </div>
-      )}
+
       {makesQueryData?.data && (
         <ModelsViewTable
           makeIdList={makesQueryData?.data.Results.map((res) => res.Make_ID)}

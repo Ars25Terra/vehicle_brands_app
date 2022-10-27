@@ -38,6 +38,7 @@ function App() {
     fetchAllManufacturerList,
     {}
   )
+
   /**
    * Selected Company Id state
    */
