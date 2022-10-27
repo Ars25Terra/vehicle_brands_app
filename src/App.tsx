@@ -8,6 +8,7 @@ import { mapExternalManufacturer, sortNamed } from './app/Utils'
 import { fetchAllManufacturerList } from './app/service/RequestUtils'
 import CircularProgress from '@mui/material/CircularProgress'
 import './app/styles/_app.scss'
+import { Alert } from '@mui/material'
 
 /**
  * Static Columns List for Manufacturers Table
@@ -46,11 +47,6 @@ function App() {
     undefined
   )
 
-  /** Show Error **/
-  if (isError) {
-    return <div>An Error occurred.</div>
-  }
-
   /**
    * Clear Current Company Id and return to Companies Table
    */
@@ -79,7 +75,13 @@ function App() {
   return (
     <div className="app">
       {isLoading && <CircularProgress />}
-      {!currentCompanyId && !isLoading && (
+      {isError && (
+        <Alert severity="error">
+          An error occurred while loading list of manufacturers. Please try
+          again.
+        </Alert>
+      )}
+      {!currentCompanyId && !isLoading && !isError && (
         <TableComponent
           rows={getManufacturers()}
           columns={columns}
