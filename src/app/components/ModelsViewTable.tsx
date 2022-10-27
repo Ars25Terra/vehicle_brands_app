@@ -2,7 +2,7 @@ import React from 'react'
 import TableComponent from "./TableComponent";
 import { GridColDef } from "@mui/x-data-grid";
 import { useQuery } from "react-query";
-import { fetchAllModelsByMakeId } from "../service/ReuqestUtils";
+import { fetchAllModelsByMakeId } from "../service/RequestUtils";
 import { IModel } from "../models/Models";
 import { mapExternalModel, sortNamed } from "../Utils";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 /**
- * Car Models Table Columns
+ * Static Car Models List for Table
  */
 const columns: GridColDef[] = [
   {
@@ -70,7 +70,11 @@ const ModelsViewTable = (props: IProps): JSX.Element => {
   }
 
   return <div>
-    <TableComponent columns={columns} rows={getRows()} pageSize={10} sorting={sortNamed}/>
+    <TableComponent columns={columns}
+                    rows={getRows()}
+                    title={'Models'}
+                    pageSize={10}
+                    sorting={sortNamed}/>
   </div>
 }
 

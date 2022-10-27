@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import ManufacturerCard from "./ManufacturerCard";
 import { mapExternalManufacturer } from "../Utils";
-import { fetchAllMakesListByManufacturerId, fetchManufacturer } from "../service/ReuqestUtils";
+import { fetchAllMakesListByManufacturerId, fetchManufacturer } from "../service/RequestUtils";
 import ModelsViewTable from "./ModelsViewTable";
 import {CircularProgress} from "@mui/material/";
 import './../styles/_manufacturerInfo.scss'

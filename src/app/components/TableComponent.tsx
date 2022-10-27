@@ -48,8 +48,8 @@ const TableComponent = (props: IProps & IActions): JSX.Element => {
     })
   }
 
-  return (<div style={{ display: 'flex', width: '100%'}}>
-    {props.title && <h1>{props.title}</h1>}
+  return (<div style={{ display: 'flex', width: '100%', flexDirection: 'column'}}>
+    {props.title && <h3>{props.title}</h3>}
     <DataGrid
       rows={props.sorting ? props.rows?.sort(props.sorting) ?? [] : props.rows ?? []}
       columns={columnsWithButtons()}

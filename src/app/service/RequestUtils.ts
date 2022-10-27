@@ -4,7 +4,7 @@ import { getRequestService } from "../Utils";
 /**
  * Context path to API
  */
-const API_CONTEXT: string = 'https://vpic.nhtsa.dot.gov/api/vehicles'
+export const API_CONTEXT: string = 'https://vpic.nhtsa.dot.gov/api/vehicles'
 
 /**
  * Get Manufacturers by ID
