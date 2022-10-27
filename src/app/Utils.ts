@@ -1,7 +1,13 @@
 import CarLogos from '@avto-dev/vehicle-logotypes/src/vehicle-logotypes.json'
-import { IExternalCompany, IExternalModel, IManufacturer, IModel, INamed } from "./models/Models";
-import { IRequestService } from "./service/IRequestService";
-import AxiosWebService from "./service/AxiosWebService";
+import {
+  IExternalCompany,
+  IExternalModel,
+  IManufacturer,
+  IModel,
+  INamed
+} from './models/Models'
+import { IRequestService } from './service/IRequestService'
+import AxiosWebService from './service/AxiosWebService'
 
 /**
  * Get Make Logo if possible
@@ -14,7 +20,9 @@ export const getMakeLogoUri = (makeName: string): string => {
 /**
  * Map External Manufacturer object to local object
  */
-export const mapExternalManufacturer = (company: IExternalCompany): IManufacturer => {
+export const mapExternalManufacturer = (
+  company: IExternalCompany
+): IManufacturer => {
   return {
     name: company.Mfr_Name,
     country: company.Country,
@@ -48,5 +56,3 @@ export const sortNamed = (a: INamed, b: INamed): number => {
  * Get Current Implementation of external API Request Service
  */
 export const getRequestService = (): IRequestService<any> => AxiosWebService()
-
-

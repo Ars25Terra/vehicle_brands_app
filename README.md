@@ -4,10 +4,11 @@ Small test application, that shows vehicle manufacturers and allows user to see 
 
 ## Summary
 
-#### Language: TypeScript
-#### Request Service: Axios (May be changed in `getRequestService` method)
-#### ReactQuery is used to launch requests
-#### Material UI is used for Table and Button components (Both are wrapped by custom components for re-usability)
+- Language: TypeScript
+- Request Service: Axios (May be changed in `getRequestService` method)
+- ReactQuery is used to launch requests
+- Material UI is used for Table and Button components (Both are wrapped by custom components for re-usability)
+- ESLint & Prettier for Code Style
 
 ## Scripts for local launch
 

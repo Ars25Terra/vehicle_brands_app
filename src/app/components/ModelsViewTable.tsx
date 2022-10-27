@@ -1,11 +1,11 @@
 import React from 'react'
-import TableComponent from "./TableComponent";
-import { GridColDef } from "@mui/x-data-grid";
-import { useQuery } from "react-query";
-import { fetchAllModelsByMakeId } from "../service/RequestUtils";
-import { IModel } from "../models/Models";
-import { mapExternalModel, sortNamed } from "../Utils";
-import CircularProgress from "@mui/material/CircularProgress";
+import TableComponent from './TableComponent'
+import { GridColDef } from '@mui/x-data-grid'
+import { useQuery } from 'react-query'
+import { fetchAllModelsByMakeId } from '../service/RequestUtils'
+import { IModel } from '../models/Models'
+import { mapExternalModel, sortNamed } from '../Utils'
+import CircularProgress from '@mui/material/CircularProgress'
 
 interface IProps {
   /**
@@ -19,18 +19,18 @@ interface IProps {
  */
 const columns: GridColDef[] = [
   {
-    field: "id",
-    headerName: "ID",
+    field: 'id',
+    headerName: 'ID',
     width: 200
   },
   {
-    field: "name",
-    headerName: "Model Name",
+    field: 'name',
+    headerName: 'Model Name',
     width: 600
   },
   {
-    field: "makeName",
-    headerName: "Make Name",
+    field: 'makeName',
+    headerName: 'Make Name',
     width: 400
   }
 ]
@@ -39,7 +39,6 @@ const columns: GridColDef[] = [
  * Car Models Table Component
  */
 const ModelsViewTable = (props: IProps): JSX.Element => {
-
   /**
    * Preparing promises for all makes id to be sent into useQuery
    */
@@ -47,15 +46,19 @@ const ModelsViewTable = (props: IProps): JSX.Element => {
   /**
    * Get models for Makes
    */
-  const results = useQuery(['makes_cache', props.makeIdList], () => Promise.all(promiseAll))
+  const results = useQuery(['makes_cache', props.makeIdList], () =>
+    Promise.all(promiseAll)
+  )
 
   /**
    * Get Table Rows from query
    */
   const getRows = (): IModel[] => {
     const models: IModel[] = []
-    results.data?.forEach(obj => {
-      obj?.Results?.forEach(res => { models.push(mapExternalModel(res)) })
+    results.data?.forEach((obj) => {
+      obj?.Results?.forEach((res) => {
+        models.push(mapExternalModel(res))
+      })
     })
     return models
   }
@@ -64,18 +67,24 @@ const ModelsViewTable = (props: IProps): JSX.Element => {
    * Show spinner while loading
    */
   if (results.isLoading) {
-    return <div style={{display: 'flex', alignSelf: 'center'}}>
-      <CircularProgress/>
-    </div>
+    return (
+      <div style={{ display: 'flex', alignSelf: 'center' }}>
+        <CircularProgress />
+      </div>
+    )
   }
 
-  return <div>
-    <TableComponent columns={columns}
-                    rows={getRows()}
-                    title={'Models'}
-                    pageSize={10}
-                    sorting={sortNamed}/>
-  </div>
+  return (
+    <div>
+      <TableComponent
+        columns={columns}
+        rows={getRows()}
+        title={'Models'}
+        pageSize={10}
+        sorting={sortNamed}
+      />
+    </div>
+  )
 }
 
 export default ModelsViewTable

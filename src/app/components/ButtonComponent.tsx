@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "@mui/material/";
+import { Button } from '@mui/material/'
 
 interface IProps {
   /**
@@ -19,11 +19,11 @@ interface IActions {
  * Button Component
  */
 const ButtonComponent = (props: IProps & IActions): JSX.Element => {
-  return <Button
-        variant={'contained'}
-        onClick={(_) => props.onClick()}>
-        {props.caption}
-      </Button>
+  return (
+    <Button variant={'contained'} onClick={() => props.onClick()}>
+      {props.caption}
+    </Button>
+  )
 }
 
 export default ButtonComponent

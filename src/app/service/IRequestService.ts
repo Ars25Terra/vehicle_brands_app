@@ -5,7 +5,7 @@ export interface IGetRequest<T> {
   /**
    * URL to external API
    */
-  url: string,
+  url: string
   /**
    * Configuration generic
    */

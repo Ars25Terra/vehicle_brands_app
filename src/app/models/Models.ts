@@ -24,7 +24,7 @@ export interface IManufacturer extends INamed {
  * Model for External Manufacturer, that is received from API
  */
 export interface IExternalCompany {
-  Country:	string
+  Country: string
   Mfr_CommonName: string
   Mfr_ID: number
   Mfr_Name: string
@@ -43,9 +43,9 @@ export interface IListResponse<T> {
  * Model for External Make, that that is received from API
  */
 export interface IExternalMake {
-  Make_ID:	number
-  Make_Name:	string
-  Mfr_Name:	string
+  Make_ID: number
+  Make_Name: string
+  Mfr_Name: string
 }
 
 /**
